@@ -72,8 +72,17 @@ void main()
 	TL1 = 0XB0;
 	TH0 = 0X3C; //定时器0置初值 0.05S
 	TL0 = 0XB0;
-	SCON = 0X50;		 //设置为工作方式1,8位数据，可变波特率
+
+	T2MOD = 0x01; //自动重载
+	T2CON = 0x30; //T2用做发送接收时钟
+	TH2 = 0xFF;  //9600波特率,11.0592Mhz晶振
+	TL2 = 0xDC; 
+	RCAP2H = 0xFF; 
+	RCAP2L = 0xDC; 
+	SCON = 0x50; //串口方式1,1个起始位,1个停止位,8位数据，可变波特率
 	PCON = 0X00;		 //波特率不加倍
+ 	TR2 = 1;  //启动T2
+
 	ES = 1;				 //开串口中断
 	EA = 1;				 //开总中断
 	ET0 = 1;			 //定时器0中断开启
@@ -439,60 +448,65 @@ void time1(void) interrupt 3 //定时中断子程序
 }
 
 //外部中断0
-void int0(void) interrupt 0 using 1 //只允许东西通行
+void int0(void) interrupt 0 using 1 
 {
 }
 
 //外部中断1
-void int1(void) interrupt 2 using 1 //只允许南北通行
+void int1(void) interrupt 2 using 1 
 {
 }
 
-void Com_Int(void) interrupt 4 //串口中断子函数
+void Com_Int(void) interrupt 4 		//串口中断子函数
 {
 	uchar i;
-	uchar receive_data, ruturn_data[36];
+	uchar receive_data, *ruturn_data[8];
 
 	EA = 0;
 
-	if (RI == 1) //当硬件接收到一个数据时，RI会置位
+	if (RI == 1) 			//当硬件接收到一个数据时，RI会置位
 	{
 		RI = 0;
-		receive_data = SBUF; //接收到的数据
+		receive_data = SBUF;		 //接收到的数据
 
-		if (receive_data == '1')
+		if (receive_data == '1')		//夜间模式
 		{
 			key_to1();
 			display();
+			ruturn_data[8] = "ok-1";
 		}
-		else if (receive_data == '2')
+		else if (receive_data == '2')		//停止模式
 		{
 			key_to2();
 			display();
+			ruturn_data[8] = "ok-2";
 		}
-		else if (receive_data == '3')
+		else if (receive_data == '3')		//确认（重现）模式
 		{
 			key_to3();
 			display();
+			ruturn_data[8] = "ok-3";
 		}
-		else if (receive_data == '4')
+		else if (receive_data == '4')		//东西通行模式
 		{
 			key_to4();
 			display();
+			ruturn_data[8] = "ok-4";
 		}
-		else if (receive_data == '5')
+		else if (receive_data == '5')		//南北通行模式
 		{
 			key_to5();
 			display();
+			ruturn_data[8] = "ok-5";
 		}
 		else
 		{
-			*ruturn_data = "error command";
+			ruturn_data[8] = "error";
 		}
 	}
-	for (i = 0; i < 36; i++)
+	for (i = 0; i < 8; i++)
 	{
-		SBUF = ruturn_data[i]; //将要发送的数据放入到发送寄存器
+		SBUF = *ruturn_data[i]; //将要发送的数据放入到发送寄存器
 		while (!TI)
 			;   //等待发送数据完成
 		TI = 0; //清除发送完成标志位
