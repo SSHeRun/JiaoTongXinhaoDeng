@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 1   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE JTD
@@ -62,7 +62,7 @@ line level    source
   51            0x07, //--7
   52            0x7f, //--8
   53            0x6f, //--9
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 2   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 2   
 
   54            0x00  //--NULL
   55          };
@@ -126,7 +126,7 @@ line level    source
  113          
  114          void key_to2() //禁止通行模式设置函数
  115          {
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 3   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 3   
 
  116   1        TR0 = 0;   //关定时器
  117   1        P2 = 0x00; //灭显示
@@ -190,7 +190,7 @@ line level    source
  175   2          display();   //调用显示，用于延时消抖
  176   2          if (k1 != 1) //如果确定按下
  177   2          {
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 4   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 4   
 
  178   3            key_to1(); //夜间模式设置函数
  179   3            do
@@ -242,7 +242,7 @@ line level    source
  225   2          display();   //调用显示，用于延时消抖
  226   2          if (k5 != 1) //如果确定按下
  227   2          {
- 228   3            key_to4(); //南北通行函数
+ 228   3            key_to5(); //南北通行函数
  229   3            do
  230   3            {
  231   4              display();   //调用显示，用于延时
@@ -254,7 +254,7 @@ line level    source
  237   1        {
  238   2          display();    //调用显示，用于延时消抖和按键检测方法基本相同
  239   2          if (hw_dx != 1) //如果确定有车辆经过
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 5   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 5   
 
  240   2          {
  241   3            if (dx_nb == 0) //东西通行的时间
@@ -318,7 +318,7 @@ line level    source
  299   1        {
  300   2          buf[1] = sec_nb / 10; //第1位 东西显示秒十位
  301   2          buf[2] = sec_nb % 10; //第2位 东西显示秒个位
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 6   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 6   
 
  302   2          buf[3] = sec_dx / 10; //第3位 南北显示秒十位
  303   2          buf[0] = sec_dx % 10; //第4位 南北显示秒个位
@@ -382,7 +382,7 @@ line level    source
  361   3            Green_nb = 0;
  362   3            Yellow_nb = 0;
  363   3            Buzz = 0; //蜂鸣器关
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 7   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 7   
 
  364   3          }
  365   2        }
@@ -446,7 +446,7 @@ line level    source
  423   3            if (num_che_dx == 0) //如果东西方向无车辆通行,每次递减5秒
  424   3              set_timedx = set_timedx - 5;
  425   3            if (set_timedx <= 15)
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 8   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 8   
 
  426   3              set_timedx = 15;
  427   3            sec_dx = set_timedx;   //重赋东西方向的起始值
@@ -510,7 +510,7 @@ line level    source
  485   2          else if (receive_data == '3')   //确认（重现）模式
  486   2          {
  487   3            key_to3();
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 9   
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 9   
 
  488   3            display();
  489   3            ruturn_data[8] = "ok-3";
@@ -574,7 +574,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     15      25
    IDATA SIZE       =   ----    ----
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 09:35:01 PAGE 10  
+C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 10  
 
    BIT SIZE         =      4    ----
 END OF MODULE INFORMATION.
