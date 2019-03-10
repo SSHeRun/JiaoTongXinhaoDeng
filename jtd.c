@@ -1,6 +1,7 @@
-#include <reg51.h> //头文件
+#include <reg52.h> //头文件
 #define uchar unsigned char
 #define uint unsigned int //宏定义
+sfr T2MOD = 0xC9;
 
 uchar data buf[4];			//秒显示的变量
 uchar data sec_dx = 20;		//东西数默认
