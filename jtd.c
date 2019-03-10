@@ -501,7 +501,7 @@ void Com_Int(void) interrupt 4 		//串口中断子函数
 		}
 		else
 		{
-			ruturn_data[8] = "error";
+			ruturn_data[8] = "error";		//错误命令
 		}
 	}
 	for (i = 0; i < 8; i++)
