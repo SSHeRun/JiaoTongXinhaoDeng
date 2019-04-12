@@ -1,7 +1,7 @@
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 1   
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 1   
 
 
-C51 COMPILER V9.54, COMPILATION OF MODULE JTD
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE JTD
 OBJECT MODULE PLACED IN jtd.OBJ
 COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE jtd.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
 
@@ -62,7 +62,7 @@ line level    source
   51            0x07, //--7
   52            0x7f, //--8
   53            0x6f, //--9
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 2   
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 2   
 
   54            0x00  //--NULL
   55          };
@@ -89,13 +89,13 @@ line level    source
   76   1      
   77   1        T2MOD = 0x01; //自动重载
   78   1        T2CON = 0x30; //T2用做发送接收时钟
-  79   1        TH2 = 0xFF;  //9600波特率,11.0592Mhz晶振
-  80   1        TL2 = 0xDC; 
-  81   1        RCAP2H = 0xFF; 
-  82   1        RCAP2L = 0xDC; 
+  79   1        TH2 = 0xFF;   //9600波特率,11.0592Mhz晶振
+  80   1        TL2 = 0xDC;
+  81   1        RCAP2H = 0xFF;
+  82   1        RCAP2L = 0xDC;
   83   1        SCON = 0x50; //串口方式1,1个起始位,1个停止位,8位数据，可变波特率
-  84   1        PCON = 0X00;     //波特率不加倍
-  85   1        TR2 = 1;  //启动T2
+  84   1        PCON = 0X00; //波特率不加倍
+  85   1        TR2 = 1;   //启动T2
   86   1      
   87   1        ES = 1;        //开串口中断
   88   1        EA = 1;        //开总中断
@@ -126,7 +126,7 @@ line level    source
  113          
  114          void key_to2() //禁止通行模式设置函数
  115          {
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 3   
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 3   
 
  116   1        TR0 = 0;   //关定时器
  117   1        P2 = 0x00; //灭显示
@@ -190,7 +190,7 @@ line level    source
  175   2          display();   //调用显示，用于延时消抖
  176   2          if (k1 != 1) //如果确定按下
  177   2          {
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 4   
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 4   
 
  178   3            key_to1(); //夜间模式设置函数
  179   3            do
@@ -254,7 +254,7 @@ line level    source
  237   1        {
  238   2          display();    //调用显示，用于延时消抖和按键检测方法基本相同
  239   2          if (hw_dx != 1) //如果确定有车辆经过
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 5   
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 5   
 
  240   2          {
  241   3            if (dx_nb == 0) //东西通行的时间
@@ -318,7 +318,7 @@ line level    source
  299   1        {
  300   2          buf[1] = sec_nb / 10; //第1位 东西显示秒十位
  301   2          buf[2] = sec_nb % 10; //第2位 东西显示秒个位
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 6   
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 6   
 
  302   2          buf[3] = sec_dx / 10; //第3位 南北显示秒十位
  303   2          buf[0] = sec_dx % 10; //第4位 南北显示秒个位
@@ -382,7 +382,7 @@ line level    source
  361   3            Green_nb = 0;
  362   3            Yellow_nb = 0;
  363   3            Buzz = 0; //蜂鸣器关
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 7   
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 7   
 
  364   3          }
  365   2        }
@@ -446,7 +446,7 @@ line level    source
  423   3            if (num_che_dx == 0) //如果东西方向无车辆通行,每次递减5秒
  424   3              set_timedx = set_timedx - 5;
  425   3            if (set_timedx <= 15)
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 8   
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 8   
 
  426   3              set_timedx = 15;
  427   3            sec_dx = set_timedx;   //重赋东西方向的起始值
@@ -474,108 +474,133 @@ line level    source
  449   1      }
  450          
  451          //外部中断0
- 452          void int0(void) interrupt 0 using 1 
+ 452          void int0(void) interrupt 0 using 1
  453          {
  454   1      }
  455          
  456          //外部中断1
- 457          void int1(void) interrupt 2 using 1 
+ 457          void int1(void) interrupt 2 using 1
  458          {
  459   1      }
  460          
- 461          void Com_Int(void) interrupt 4    //串口中断子函数
+ 461          void Com_Int(void) interrupt 4 //串口中断子函数
  462          {
  463   1        uchar i;
- 464   1        uchar receive_data, *ruturn_data[8];
+ 464   1        uchar receive_data, ruturn_data[8];
  465   1      
  466   1        EA = 0;
  467   1      
- 468   1        if (RI == 1)      //当硬件接收到一个数据时，RI会置位
+ 468   1        if (RI == 1) //当硬件接收到一个数据时，RI会置位
  469   1        {
  470   2          RI = 0;
- 471   2          receive_data = SBUF;     //接收到的数据
+ 471   2          receive_data = SBUF; //接收到的数据
  472   2      
- 473   2          if (receive_data == '1')    //夜间模式
+ 473   2          if (receive_data == '1') //夜间模式
  474   2          {
  475   3            key_to1();
  476   3            display();
- 477   3            ruturn_data[8] = "ok-1";
- 478   3          }
- 479   2          else if (receive_data == '2')   //停止模式
- 480   2          {
- 481   3            key_to2();
- 482   3            display();
- 483   3            ruturn_data[8] = "ok-2";
- 484   3          }
- 485   2          else if (receive_data == '3')   //确认（重现）模式
- 486   2          {
- 487   3            key_to3();
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 9   
+ 477   3            ruturn_data[0] = 'o';
+ 478   3            ruturn_data[1] = 'k';
+ 479   3            ruturn_data[2] = '-';
+ 480   3            ruturn_data[3] = '1';
+ 481   3            ruturn_data[4] = '\0';
+ 482   3          }
+ 483   2          else if (receive_data == '2') //停止模式
+ 484   2          {
+ 485   3            key_to2();
+ 486   3            display();
+ 487   3            ruturn_data[0] = 'o';
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 9   
 
- 488   3            display();
- 489   3            ruturn_data[8] = "ok-3";
- 490   3          }
- 491   2          else if (receive_data == '4')   //东西通行模式
- 492   2          {
- 493   3            key_to4();
- 494   3            display();
- 495   3            ruturn_data[8] = "ok-4";
- 496   3          }
- 497   2          else if (receive_data == '5')   //南北通行模式
- 498   2          {
- 499   3            key_to5();
- 500   3            display();
- 501   3            ruturn_data[8] = "ok-5";
+ 488   3            ruturn_data[1] = 'k';
+ 489   3            ruturn_data[2] = '-';
+ 490   3            ruturn_data[3] = '2';
+ 491   3            ruturn_data[4] = '\0';
+ 492   3          }
+ 493   2          else if (receive_data == '3') //确认（重现）模式
+ 494   2          {
+ 495   3            key_to3();
+ 496   3            display();
+ 497   3            ruturn_data[0] = 'o';
+ 498   3            ruturn_data[1] = 'k';
+ 499   3            ruturn_data[2] = '-';
+ 500   3            ruturn_data[3] = '3';
+ 501   3            ruturn_data[4] = '\0';
  502   3          }
- 503   2          else
+ 503   2          else if (receive_data == '4') //东西通行模式
  504   2          {
- 505   3            ruturn_data[8] = "error";   //错误命令
- 506   3          }
- 507   2        }
- 508   1        for (i = 0; i < 8; i++)
- 509   1        {
- 510   2          SBUF = *ruturn_data[i]; //将要发送的数据放入到发送寄存器
- 511   2          while (!TI)
- 512   2            ;   //等待发送数据完成
- 513   2          TI = 0; //清除发送完成标志位
- 514   2        }
- 515   1        EA = 1;
- 516   1      }
- 517          void logo() //开机的Logo  "- - - -"
- 518          {
- 519   1        for (n = 0; n < 50; n++) //循环显示----50次
- 520   1        {
- 521   2          P0 = 0x40; //送形“-”
- 522   2          P1 = 0xfe; //第一位显示
- 523   2          delay(1);  //延时
- 524   2          P1 = 0xfd; //第二位显示
- 525   2          delay(1);  //延时
- 526   2          P1 = 0Xfb; //第三位显示
- 527   2          delay(1);  //延时
- 528   2          P1 = 0Xf7; //第四位显示
- 529   2          delay(1);  //延时
- 530   2          P1 = 0xff; //灭显示
- 531   2        }
- 532   1      }
- 533          
- 534          void delay(int ms) //延时子程序
- 535          {
- 536   1        uint j, k;
- 537   1        for (j = 0; j < ms; j++) //延时ms
- 538   1          for (k = 0; k < 124; k++)
- 539   1            ; //大约1毫秒的延时
- 540   1      }
+ 505   3            key_to4();
+ 506   3            display();
+ 507   3            ruturn_data[0] = 'o';
+ 508   3            ruturn_data[1] = 'k';
+ 509   3            ruturn_data[2] = '-';
+ 510   3            ruturn_data[3] = '4';
+ 511   3            ruturn_data[4] = '\0';
+ 512   3          }
+ 513   2          else if (receive_data == '5') //南北通行模式
+ 514   2          {
+ 515   3            key_to5();
+ 516   3            display();
+ 517   3            ruturn_data[0] = 'o';
+ 518   3            ruturn_data[1] = 'k';
+ 519   3            ruturn_data[2] = '-';
+ 520   3            ruturn_data[3] = '5';
+ 521   3            ruturn_data[4] = '\0';
+ 522   3          }
+ 523   2          else
+ 524   2          {
+ 525   3            ruturn_data[0] = 'e';
+ 526   3            ruturn_data[1] = 'r';
+ 527   3            ruturn_data[2] = 'r';
+ 528   3            ruturn_data[3] = '0';
+ 529   3            ruturn_data[4] = 'r';
+ 530   3            ruturn_data[5] = '\0'; //错误命令
+ 531   3          }
+ 532   2        }
+ 533   1        for (i = 0; i < 8; i++)
+ 534   1        {
+ 535   2          SBUF = ruturn_data[i]; //将要发送的数据放入到发送寄存器
+ 536   2          while (!TI)
+ 537   2            ;   //等待发送数据完成
+ 538   2          TI = 0; //清除发送完成标志位
+ 539   2        }
+ 540   1        EA = 1;
+ 541   1      }
+ 542          void logo() //开机的Logo  "- - - -"
+ 543          {
+ 544   1        for (n = 0; n < 50; n++) //循环显示----50次
+ 545   1        {
+ 546   2          P0 = 0x40; //送形“-”
+ 547   2          P1 = 0xfe; //第一位显示
+ 548   2          delay(1);  //延时
+ 549   2          P1 = 0xfd; //第二位显示
+C51 COMPILER V9.57.0.0   JTD                                                               04/11/2019 21:22:04 PAGE 10  
+
+ 550   2          delay(1);  //延时
+ 551   2          P1 = 0Xfb; //第三位显示
+ 552   2          delay(1);  //延时
+ 553   2          P1 = 0Xf7; //第四位显示
+ 554   2          delay(1);  //延时
+ 555   2          P1 = 0xff; //灭显示
+ 556   2        }
+ 557   1      }
+ 558          
+ 559          void delay(int ms) //延时子程序
+ 560          {
+ 561   1        uint j, k;
+ 562   1        for (j = 0; j < ms; j++) //延时ms
+ 563   1          for (k = 0; k < 124; k++)
+ 564   1            ; //大约1毫秒的延时
+ 565   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1169    ----
-   CONSTANT SIZE    =     42    ----
+   CODE SIZE        =   1185    ----
+   CONSTANT SIZE    =     11    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     15      25
+   DATA SIZE        =     15       9
    IDATA SIZE       =   ----    ----
-C51 COMPILER V9.54   JTD                                                                   03/10/2019 10:08:19 PAGE 10  
-
    BIT SIZE         =      4    ----
 END OF MODULE INFORMATION.
 
